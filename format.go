@@ -17,7 +17,7 @@ func Format(s string) []string {
 	}
 	return Emptiness(words) //---			---> Check if there is only Empty String in Table
 }
-
+//***************__FUNTIONS__***************\\
 func Printability(s string) {
 	r := []rune(s)
 	if len(r) != len(s) { //---			---> Given that Non-Printable is represented by two characters 
@@ -25,7 +25,6 @@ func Printability(s string) {
 		os.Exit(0)
 	}
 }
-
 func Emptiness(t []string) []string {
 	for _, v := range t {
 		if v != "" { //---			---> Non-Empty string = Non-Empty Table
