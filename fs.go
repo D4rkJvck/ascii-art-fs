@@ -11,7 +11,7 @@ func fileSystem() []string {
 		os.Stderr.WriteString("\033[31mERROR --> \033[30mToo Many Arguments\n\033[32mUsage --> \033[34mgo run . [STRING] [BANNER]\033[0m")
 		os.Exit(0)
 	} else if os.Args[2] != "standard" && os.Args[2] != "shadow" && os.Args[2] != "thinkertoy" { //---> Valid Banner
-		os.Stderr.WriteString("\033[31mERROR --> \033[30mInvalid [BANNER]\n\033[32mValid --> \033[34mstandard - shadow - thinkertoy\033[0m")
+		os.Stderr.WriteString("\033[31mERROR --> \033[30mInvalid [BANNER]\n\033[32m[BANNER] --> \033[34mstandard || shadow || thinkertoy\033[0m")
 		os.Exit(0)
 	}
 	return fileScan(os.Args[2] + ".txt") //---> User just need to put Banner Name
