@@ -17,6 +17,5 @@ func wordArt(t, l []string) {
 	}
 }
 
-func lineAbove(r rune) int {
-	return int(r-32) * 9
-}
+//***************___FUNCTIONS___***************\\
+func lineAbove(r rune) int { return int(r-32) * 9 }
