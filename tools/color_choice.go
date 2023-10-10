@@ -1,6 +1,12 @@
 package tools
 
-func ColorChoice(s string) int {
+import (
+	"log"
+	"strconv"
+	"strings"
+)
+
+func ColorChoiceAnsi(s string) int {
 	switch s {
 	case "black":
 		return 30
@@ -29,4 +35,34 @@ func ColorChoice(s string) int {
 	default:
 		return 0
 	}
+}
+
+func ColorChoiceRgb(s string) (r, g, b int) {
+	// Supprimer les caractères inutiles autour de la chaîne RGB
+	s = strings.TrimSpace(s)
+	s = strings.TrimPrefix(s, "rgb(")
+	s = strings.TrimSuffix(s, ")")
+
+	// Séparer les composantes R, G et B
+	components := strings.Split(s, ";")
+	if len(components) != 3 {
+		log.Fatal("\033[31m\nERROR: \033[0mInvalid RGB Color")
+	}
+
+	r, err := strconv.Atoi(components[0])
+	if err != nil || (r < 0 || r > 255) {
+		log.Fatal("\033[31m\nERROR: \033[0mInvalid RGB Color")
+	}
+
+	g, err = strconv.Atoi(components[1])
+	if err != nil ||(g < 0 || g > 255) {
+		log.Fatal("\033[31m\nERROR: \033[0mInvalid RGB Color")
+	}
+
+	b, err = strconv.Atoi(components[2])
+	if err != nil || (b < 0 || b > 255) {
+		log.Fatal("\033[31m\nERROR: \033[0mInvalid RGB Color")
+	}
+
+	return
 }

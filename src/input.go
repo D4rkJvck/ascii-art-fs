@@ -1,7 +1,7 @@
 package src
 
 import (
-	"log"
+	"fmt"
 	"os"
 	"regexp"
 )
@@ -20,7 +20,8 @@ func Input() {
 		case "align":
 			Ascii_Art_Justify(sub[2])
 		default:
-			log.Fatal("\033[31m\nERROR: \033[0mInvalid [OPTION]")
+			fmt.Println("\033[31m\nERROR: \033[0mInvalid [OPTION]")
+			return
 		}
 	} else {
 		Ascii_Art_FS() //---> No Flag Option
