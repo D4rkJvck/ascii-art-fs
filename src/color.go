@@ -3,6 +3,7 @@ package src
 import (
 	"ascii/tools"
 	"fmt"
+	"log"
 	"os"
 	"strings"
 )
@@ -10,15 +11,14 @@ import (
 func Ascii_Art_Color(color string) {
 	if strings.HasPrefix(color, "rgb(") {
 		Rgb(color)
-	}else{
+	} else {
 		Ansi(color)
 	}
 }
 
 func Ansi(color string) {
 	if tools.ColorChoiceAnsi(color) == 0 {
-		fmt.Println("\033[31m\nERROR: \033[0mInvalid ANSI Color")
-		return
+		log.Fatal("\033[31m\nERROR: \033[0mInvalid ANSI Color")
 	}
 	lines := tools.FileScan("templates/standard.txt")
 	words, err_Format := tools.ColorFormat(os.Args)
@@ -49,7 +49,7 @@ func Ansi(color string) {
 	}
 }
 
-func Rgb(color string)  {
+func Rgb(color string) {
 	r, g, b := tools.ColorChoiceRgb(color)
 	lines := tools.FileScan("templates/standard.txt")
 	words, err_Format := tools.ColorFormat(os.Args)
@@ -66,12 +66,12 @@ func Rgb(color string)  {
 				for _, letter := range word {
 					if len(os.Args) == 4 {
 						if strings.Contains(os.Args[2], string(letter)) {
-							fmt.Printf("\033[38;2;%d;%d;%dm%v\033[0m",r,g,b, lines[int(letter-32)*9+i])
+							fmt.Printf("\033[38;2;%d;%d;%dm%v\033[0m", r, g, b, lines[int(letter-32)*9+i])
 						} else {
 							fmt.Print(lines[int(letter-32)*9+i])
 						}
 					} else {
-						fmt.Printf("\033[38;2;%d;%d;%dm%v\033[0m",r,g,b, lines[int(letter-32)*9+i])
+						fmt.Printf("\033[38;2;%d;%d;%dm%v\033[0m", r, g, b, lines[int(letter-32)*9+i])
 					}
 				}
 				fmt.Println()
